@@ -1,0 +1,12 @@
+models:
+  Certificado:
+    id: uuid
+    nombre_completo: string nullable
+    tipo_doc: string nullable default:false
+    documento: string nullable
+    fecha_creacion: datetime nullable
+    departamento: string nullable
+    ciudad: string nullable
+    empresa: string nullable
+    curso: string nullable
+    codigo_certificado: string nullable

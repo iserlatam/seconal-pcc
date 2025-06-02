@@ -1,0 +1,7 @@
+created:
+    - database/factories/CertificadoFactory.php
+    - database/migrations/2025_06_02_023800_create_certificados_table.php
+    - app/Models/Certificado.php
+models:
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable default:NULL', password: string, remember_token: 'string:100 nullable default:NULL' }
+    Certificado: { id: uuid, nombre_completo: 'string nullable', tipo_doc: 'string nullable default:false', documento: 'string nullable', fecha_creacion: 'datetime nullable', departamento: 'string nullable', ciudad: 'string nullable', empresa: 'string nullable', curso: 'string nullable', codigo_certificado: 'string nullable' }

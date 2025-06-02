@@ -1,0 +1,99 @@
+models:
+  Certificado:
+    id: uuid
+    codigo: string
+    vencimiento: boolean nullable default:false
+    fecha_vencimiento: date nullable
+    # dpto: string
+    # ciudad: string
+    observaciones: text nullable
+    estado: enum:aprobado,reprobado,revision,aplazado default:revision nullable
+    curso_id: unsignedInteger
+    estudiante_id: unsignedInteger
+    sede_id: unsignedInteger
+    relationships:
+      belongsTo: Estudiante, Curso, Sede
+
+  Sede:
+    nombre: string nullable
+    dpto: string nullable
+    ciudad: string nullable
+    direccion: string nullable
+    coordinador: string nullable
+    relationships:
+      hasOne: Estudiante
+      hasMany: Entrenador
+
+  Entrenador:
+    nombre_completo: string
+    doc_tipo: enum:ti,cc,ce,pasaporte
+    doc_numero: string
+    fecha_de_nacimiento: date
+    licencia: string nullable
+    escuela: string nullable
+    direccion: string nullable
+    sede_id: string nullable
+    relationships:
+      hasMany: Curso
+      belongsTo: Sede
+
+  Estudiante:
+    nombre_completo: string
+    doc_tipo: enum:ti,cc,ce,pasaporte
+    doc_numero: string
+    fecha_de_nacimiento: date
+    direccion: string
+    sede_id: unsignedInteger
+    empresa_id: unsignedInteger nullable
+    relationships:
+      hasOne: Certificado
+      belongsTo: Sede, Empresa
+      belongsToMany: Curso
+
+  Empresa:
+    nombre: string
+    nit: string
+    campo: string nullable
+    dpto: string nullable
+    ciudad: string nullable
+    direccion: string nullable
+    rep_legal: string nullable
+    arl: string nullable
+    relationships:
+      hasMany: Estudiante
+
+  Curso:
+    codigo: string
+    titulacion: string
+    duracion: string
+    valor: double
+    estado: enum:abierto,lleno,cerrado default:abierto nullable
+    limite_estudiantes: smallint default:50 nullable
+    estudiantes: smallint default:0 nullable # ELIMINAR DEL FORM BUILDER
+    area_id: unsignedInteger
+    entrenador_id: unsignedInteger
+    nivel_id: unsignedInteger
+    cupon_id: unsignedInteger nullable
+    relationships:
+      belongsTo: Nivel, Area, Cupon, Entrenador
+      hasMany: Certificado
+      belongsToMany: Estudiante
+
+  Nivel:
+    etiqueta: string
+    relationships:
+      hasMany: Curso
+
+  Area:
+    nombre: string
+    relationships:
+      hasMany: Curso
+
+  Cupon:
+    id: uuid
+    nombre: string nullable unique
+    estado: enum:activo,inactivo default:inactivo nullable
+    total_desc: int
+    tipo_desc: enum:fijo,porcentaje
+    relationships:
+      hasMany: Curso
