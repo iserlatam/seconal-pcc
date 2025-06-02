@@ -21,14 +21,23 @@ class CertificadoFactory extends Factory
     public function definition(): array
     {
         return [
-            'nombre_completo' => fake()->word(),
-            'tipo_doc' => fake()->word(),
-            'documento' => fake()->word(),
+            'nombre_completo' => fake()->name(),
+            'tipo_doc' => "CC",
+            'documento' => fake()->numberBetween(00000000, 99999999),
             'fecha_creacion' => fake()->dateTime(),
-            'departamento' => fake()->word(),
-            'ciudad' => fake()->word(),
-            'empresa' => fake()->word(),
-            'curso' => fake()->word(),
+            'departamento' => "VAC",
+            'ciudad' => "Cali",
+            'empresa' => fake()->userName(),
+            // Generate a code for the course based on the first letter, next 3 letters, and a random number
+            'curso' => (function () {
+                $cursoNombre = fake()->randomElement(['Curso de Capacitación', 'Curso de Actualización', 'Curso de Especialización']);
+                $words = explode(' ', $cursoNombre);
+                $firstWord = $words[0] ?? '';
+                $secondWord = $words[1] ?? '';
+                $code = strtoupper(substr($firstWord, 0, 1) . substr($secondWord, 0, 3));
+                $number = str_pad(fake()->numberBetween(0, 999), 3, '0', STR_PAD_LEFT);
+                return $code . $number;
+            })(),
             'codigo_certificado' => fake()->word(),
         ];
     }

@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('certificados', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->id('id');
             $table->string('nombre_completo')->nullable();
             $table->string('tipo_doc')->nullable()->default('false');
             $table->string('documento')->nullable();

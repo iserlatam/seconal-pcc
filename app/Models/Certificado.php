@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Certificado extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.

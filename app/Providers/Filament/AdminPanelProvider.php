@@ -30,22 +30,21 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('PCC')
             ->brandLogo('/img/pccLightLogo.svg')
             ->brandLogoHeight("40px")
+            ->topNavigation()
             ->darkModeBrandLogo('/img/pccDarkLogo.svg')
             ->login()
             ->colors([
                 'danger' => Color::Rose,
                 'gray' => Color::Gray,
                 'info' => Color::Blue,
-                'primary' => Color::Teal,
-                'success' => Color::Emerald,
+                'primary' => Color::Amber,
+                'success' => Color::Green,
                 'warning' => Color::Orange,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([])
-            ->spa()
             ->unsavedChangesAlerts()
-            ->globalSearch()
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
                 // Widgets\StatsOverview::class,

@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources\CertificadoResource\Pages;
 
+use App\Exports\CertificadoExport;
 use App\Filament\Resources\CertificadoResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ListCertificados extends ListRecords
 {
@@ -14,6 +16,11 @@ class ListCertificados extends ListRecords
     {
         return [
             Actions\CreateAction::make(),
+            Actions\Action::make('Exportar')
+                ->icon('heroicon-o-arrow-down-tray')
+                ->color('secondary')
+                ->url(route('certificaciones.exportar'))
+                ->requiresConfirmation(false),
         ];
     }
 }
