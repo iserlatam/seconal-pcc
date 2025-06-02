@@ -23,31 +23,39 @@ class CertificadoResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nombre_completo')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('tipo_doc')
-                    ->maxLength(255)
-                    ->default('false'),
-                Forms\Components\TextInput::make('documento')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\DateTimePicker::make('fecha_creacion'),
-                Forms\Components\TextInput::make('departamento')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('ciudad')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('empresa')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('curso')
-                    ->maxLength(255)
-                    ->default(null),
-                Forms\Components\TextInput::make('codigo_certificado')
-                    ->maxLength(255)
-                    ->default(null),
+                Forms\Components\Section::make('Informacion personal')
+                    ->columns(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('nombre_completo')
+                            ->maxLength(255)
+                            ->default(null),
+                        Forms\Components\TextInput::make('tipo_doc')
+                            ->maxLength(255)
+                            ->default('false'),
+                        Forms\Components\TextInput::make('documento')
+                            ->maxLength(255)
+                            ->default(null),
+                        Forms\Components\DateTimePicker::make('fecha_creacion'),
+                        Forms\Components\TextInput::make('departamento')
+                            ->maxLength(255)
+                            ->default(null),
+                        Forms\Components\TextInput::make('ciudad')
+                            ->maxLength(255)
+                            ->default(null),
+                    ]),
+                Forms\Components\Section::make('Datos del certificado')
+                    ->columns(3)
+                    ->schema([
+                        Forms\Components\TextInput::make('empresa')
+                            ->maxLength(255)
+                            ->default(null),
+                        Forms\Components\TextInput::make('curso')
+                            ->maxLength(255)
+                            ->default(null),
+                        Forms\Components\TextInput::make('codigo_certificado')
+                            ->maxLength(255)
+                            ->default(null),
+                    ]),
             ]);
     }
 
