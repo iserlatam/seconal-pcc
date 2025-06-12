@@ -33,13 +33,10 @@ class AdminPanelProvider extends PanelProvider
             ->topNavigation()
             ->darkModeBrandLogo('/img/pccDarkLogo.svg')
             ->login()
+            // ->databaseNotifications()
             ->colors([
-                'danger' => Color::Rose,
-                'gray' => Color::Gray,
-                'info' => Color::Blue,
-                'primary' => Color::Amber,
-                'success' => Color::Green,
-                'warning' => Color::Orange,
+                'info' => Color::Amber,
+                'primary' => Color::Green,
             ])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')

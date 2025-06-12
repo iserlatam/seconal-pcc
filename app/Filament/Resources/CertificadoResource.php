@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\DepartamentosEnum;
 use App\Filament\Resources\CertificadoResource\Pages;
 use App\Filament\Resources\CertificadoResource\RelationManagers;
 use App\Models\Certificado;
@@ -48,8 +49,8 @@ class CertificadoResource extends Resource
                         Forms\Components\DateTimePicker::make('fecha_creacion')
                             ->default(now())
                             ->label('Fecha de Creación'),
-                        Forms\Components\TextInput::make('departamento')
-                            ->maxLength(25)
+                        Forms\Components\Select::make('departamento')
+                            ->options(DepartamentosEnum::class)
                             ->default(null),
                         Forms\Components\TextInput::make('ciudad')
                             ->maxLength(25)
@@ -173,8 +174,8 @@ class CertificadoResource extends Resource
     {
         return [
             'index' => Pages\ListCertificados::route('/'),
-            'create' => Pages\CreateCertificado::route('/create'),
-            'edit' => Pages\EditCertificado::route('/{record}/edit'),
+            // 'create' => Pages\CreateCertificado::route('/create'),
+            // 'edit' => Pages\EditCertificado::route('/{record}/edit'),
         ];
     }
 }
