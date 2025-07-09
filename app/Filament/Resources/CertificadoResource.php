@@ -82,7 +82,8 @@ class CertificadoResource extends Resource
                     ->toggleable(true)
                     ->toggledHiddenByDefault(true)
                     ->sortable(),
-                Tables\Columns\TextColumn::make('nombre_completo'),
+                Tables\Columns\TextColumn::make('nombre_completo')
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('tipo_doc')
                     ->label('Tipo de Documento')
                     ->alignCenter(),
@@ -97,8 +98,7 @@ class CertificadoResource extends Resource
                 Tables\Columns\TextColumn::make('empresa'),
                 Tables\Columns\TextColumn::make('curso'),
                 Tables\Columns\TextColumn::make('codigo_certificado')
-                    ->formatStateUsing(fn($record) => strtoupper($record->codigo_certificado))
-                    ->searchable(),
+                    ->formatStateUsing(fn($record) => strtoupper($record->codigo_certificado)),
                 Tables\Columns\TextColumn::make('fecha_creacion')
                     ->date()
                     ->sortable(),
@@ -154,8 +154,18 @@ class CertificadoResource extends Resource
                 Tables\Actions\ActionGroup::make([
                     Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
-                    Tables\Actions\DeleteAction::make(),
-                ])
+                    Tables\Actions\DeleteAction::make()
+                ]),
+                // Html2MediaAction::make('imprimir')
+                //     ->icon('heroicon-o-printer')
+                //     ->label('Imprimir Certificado')
+                //     ->color('primary')
+                //     ->filename(fn($record) => 'CERTIFICADO-' . $record->nombre_completo . '.pdf')
+                //     ->savePdf()
+                //     ->preview()
+                //     ->orientation('landscape')
+                //     ->format('a4', 'mm')
+                //     ->content(fn($record) => view('exports.v1.certificado-pdf', ['record' => $record])),
             ], ActionsPosition::BeforeCells)
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
