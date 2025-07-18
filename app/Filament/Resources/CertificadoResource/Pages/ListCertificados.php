@@ -32,14 +32,6 @@ class ListCertificados extends ListRecords
                 ->color(Color::Green)
                 ->label('Exportar Certificados')
                 ->requiresConfirmation(false),
-            Actions\ImportAction::make('Importar')
-                ->importer(CertificadoImporter::class)
-                ->csvDelimiter(';')
-                ->icon('heroicon-o-arrow-up-tray')
-                ->color(Color::Blue)
-                ->label('Importar Certificados')
-                ->requiresConfirmation(false),
-
             Actions\Action::make('Import CSV')
                 ->form([
                     FileUpload::make('file')
@@ -56,8 +48,11 @@ class ListCertificados extends ListRecords
                         ->success()
                         ->send();
                 })
-                ->modalHeading('Importar Certificados desde CSV'),
-
+                ->icon('heroicon-o-arrow-up-tray')
+                ->color(Color::Blue)
+                ->label('Importar Certificados')
+                ->modalHeading('Importar Certificados desde CSV')
+                ->modalDescription('Sube un archivo CSV para importar certificados.'),
             Actions\CreateAction::make()
                 ->label('Crear Certificado')
                 ->icon('heroicon-s-plus')
