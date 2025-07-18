@@ -31,7 +31,7 @@ class CertificadoImporter extends Importer
                 ->ignoreBlankState()
                 ->requiredMapping()
                 ->castStateUsing(function ($state){
-                    $state = Carbon::parse($state)->format('y-m-d');
+                    $state = Carbon::createFromFormat('d/m/Y', $state);
                     return $state;
                 }),
             ImportColumn::make('departamento')
