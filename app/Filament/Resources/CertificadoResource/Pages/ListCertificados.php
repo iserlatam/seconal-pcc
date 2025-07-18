@@ -8,6 +8,8 @@ use App\Filament\Imports\CertificadoImporter;
 use App\Filament\Resources\CertificadoResource;
 use App\Imports\CertificadoImport;
 use Filament\Actions;
+use Filament\Forms\Components\FileUpload;
+use Filament\Notifications\Notification;
 use Filament\Resources\Pages\ListRecords;
 use Filament\Support\Colors\Color;
 use Maatwebsite\Excel\Facades\Excel;
@@ -32,10 +34,30 @@ class ListCertificados extends ListRecords
                 ->requiresConfirmation(false),
             Actions\ImportAction::make('Importar')
                 ->importer(CertificadoImporter::class)
+                ->csvDelimiter(';')
                 ->icon('heroicon-o-arrow-up-tray')
                 ->color(Color::Blue)
                 ->label('Importar Certificados')
                 ->requiresConfirmation(false),
+
+            Actions\Action::make('Import CSV')
+                ->form([
+                    FileUpload::make('file')
+                        ->acceptedFileTypes(['text/csv'])
+                        ->required()
+                        ->storeFiles(false), // Prevent storing it permanently
+                ])
+                ->action(function (array $data) {
+                    $importer = new CertificadoImport();
+                    Excel::import($importer, $data['file']);
+
+                    Notification::make()
+                        ->title("Importación completada: {$importer->importedCount} registros")
+                        ->success()
+                        ->send();
+                })
+                ->modalHeading('Importar Certificados desde CSV'),
+
             Actions\CreateAction::make()
                 ->label('Crear Certificado')
                 ->icon('heroicon-s-plus')

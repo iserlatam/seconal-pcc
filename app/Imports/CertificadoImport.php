@@ -3,27 +3,43 @@
 namespace App\Imports;
 
 use App\Models\Certificado;
-use Maatwebsite\Excel\Concerns\ToModel;
+use Illuminate\Support\Collection;
+use Carbon\Carbon;
+use Maatwebsite\Excel\Concerns\ToCollection;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithCustomCsvSettings;
 
-class CertificadoImport implements ToModel
+class CertificadoImport implements ToCollection, WithHeadingRow, WithCustomCsvSettings
 {
-    /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
-    public function model(array $row)
+    public int $importedCount = 0;
+
+    public function collection(Collection $rows)
     {
-        return new Certificado([
-            'nombre_completo' => $row[0],
-            'tipo_doc' => $row[1],
-            'documento' => $row[2],
-            'fecha_creacion' => \PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[3]),
-            'departamento' => $row[4],
-            'ciudad' => $row[5],
-            'empresa' => $row[6],
-            'curso' => $row[7],
-            'codigo_certificado' => $row[8],
-        ]);
+        foreach ($rows as $row) {
+            if (empty($row['documento'])) {
+                continue;
+            }
+
+            Certificado::create([
+                'nombre_completo'    => $row['nombre_completo'],
+                'tipo_doc'           => $row['tipo_doc'],
+                'documento'          => $row['documento'],
+                'fecha_creacion'     => Carbon::createFromFormat('d/m/Y', trim($row['fecha_creacion'])),
+                'departamento'       => $row['departamento'],
+                'ciudad'             => $row['ciudad'],
+                'empresa'            => $row['empresa'],
+                'curso'              => $row['curso'],
+                'codigo_certificado' => $row['codigo_certificado'],
+            ]);
+
+            $this->importedCount++;
+        }
+    }
+
+    public function getCsvSettings(): array
+    {
+        return [
+            'delimiter' => ';',
+        ];
     }
 }
