@@ -6,6 +6,7 @@ use App\Models\Certificado;
 use Filament\Actions\Imports\ImportColumn;
 use Filament\Actions\Imports\Importer;
 use Filament\Actions\Imports\Models\Import;
+use Illuminate\Support\Carbon;
 
 class CertificadoImporter extends Importer
 {
@@ -23,12 +24,16 @@ class CertificadoImporter extends Importer
                 ->ignoreBlankState()
                 ->requiredMapping(),
             ImportColumn::make('documento')
-                ->rules(['max:255', 'unique:certificados,documento'])
+                ->rules(['max:255'])
                 ->ignoreBlankState()
                 ->requiredMapping(),
             ImportColumn::make('fecha_creacion')
                 ->ignoreBlankState()
-                ->requiredMapping(),
+                ->requiredMapping()
+                ->castStateUsing(function ($state){
+                    $state = Carbon::parse($state)->format('y-m-d');
+                    return $state;
+                }),
             ImportColumn::make('departamento')
                 ->rules(['max:255'])
                 ->ignoreBlankState()
