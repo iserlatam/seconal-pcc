@@ -28,10 +28,10 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('app')
             ->brandName('PCC')
-            ->brandLogo('/img/pccLightLogo.svg')
+            ->brandLogo('/img/logo_nuevo.png')
             ->brandLogoHeight("40px")
             ->topNavigation()
-            ->darkModeBrandLogo('/img/pccDarkLogo.svg')
+            ->darkModeBrandLogo('/logo_nuevo.png')
             ->login()
             // ->databaseNotifications()
             ->colors([
