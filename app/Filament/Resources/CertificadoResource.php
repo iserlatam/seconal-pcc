@@ -89,6 +89,7 @@ class CertificadoResource extends Resource
                     ->alignCenter(),
                 Tables\Columns\TextColumn::make('documento')
                     ->label('No. Documento')
+                    ->copyable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('ciudad')
                     ->formatStateUsing(fn($record) => strtoupper($record->ciudad))

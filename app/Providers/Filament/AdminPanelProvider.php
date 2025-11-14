@@ -31,6 +31,7 @@ class AdminPanelProvider extends PanelProvider
             ->brandLogo('/img/logo_nuevo.png')
             ->brandLogoHeight("40px")
             ->topNavigation()
+            ->databaseNotifications()
             ->darkModeBrandLogo('/logo_nuevo.png')
             ->login()
             // ->databaseNotifications()
