@@ -19,7 +19,7 @@ class CertificadoResource extends JsonResource
             'nombre_completo'      => $this->nombre_completo,
             'tipo_doc'             => $this->tipo_doc,
             'documento'            => $this->documento,
-            'fecha_creacion'       => Carbon::parse($this->fecha_creacion)->translatedFormat('M d - Y'),
+            'fecha_creacion'       => Carbon::parse($this->fecha_creacion)->translatedFormat('F d, Y'),
             'departamento'         => $this->departamento,
             'ciudad'               => $this->ciudad,
             'empresa'              => $this->empresa,
