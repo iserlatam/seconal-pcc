@@ -148,11 +148,12 @@
                 </div>
                 <div class="gap-lg hidden items-center md:flex">
                     <a class="font-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary dark:hover:text-primary-fixed cursor-pointer transition-colors"
-                        href="#">Contacto</a>
-                    <button
-                        class="bg-primary text-on-primary px-sm py-xs font-label-md text-label-md cursor-pointer rounded-lg transition-all hover:opacity-90 active:opacity-80">
+                        href="https://seguridadconaltura.com/contacto">Contacto</a>
+                    <a
+                        href="https://seguridadconaltura.com"
+                        class="bg-primary text-on-primary px-sm py-sm font-label-md text-label-md cursor-pointer rounded-lg transition-all hover:opacity-90 active:opacity-80">
                         Volver al inicio
-                    </button>
+                    </a>
                 </div>
             </div>
         </nav>
@@ -170,11 +171,11 @@
                 </div>
                 <div class="gap-lg flex">
                     <a class="font-body-sm text-body-sm text-on-surface-variant transition-all duration-200 hover:underline"
-                        href="#">Nosotros</a>
+                        href="https://seguridadconaltura.com/nosotros">Nosotros</a>
                     <a class="font-body-sm text-body-sm text-on-surface-variant transition-all duration-200 hover:underline"
-                        href="#">Contacto</a>
+                        href="https://seguridadconaltura.com/contacto">Contacto</a>
                     <a class="font-body-sm text-body-sm text-on-surface-variant transition-all duration-200 hover:underline"
-                        href="#">Servicios</a>
+                        href="https://seguridadconaltura.com/servicios">Servicios</a>
                 </div>
             </div>
         </footer>
