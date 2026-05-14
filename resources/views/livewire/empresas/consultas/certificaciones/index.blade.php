@@ -20,7 +20,7 @@
                         class="material-symbols-outlined left-sm text-outline absolute top-1/2 -translate-y-1/2">badge</span>
                     <input
                         wire:keydown.enter="consult"
-                        wire:model.live='document'
+                        wire:model.live.debounce.500ms='document'
                         class="pl-xl pr-sm py-md border-outline focus:border-primary focus:ring-primary bg-surface-container-lowest text-body-md placeholder:text-outline-variant w-full border outline-none transition-all focus:ring-1"
                         id="doc-number" placeholder="Ej. 12345678" type="text" />
                 </div>
