@@ -77,9 +77,6 @@
                                 class="px-sm py-md font-label-md text-label-md text-surface-container-lowest whitespace-nowrap uppercase">
                                 Ciudad</th>
                             <th
-                                class="px-sm py-md font-label-md text-label-md text-surface-container-lowest whitespace-nowrap uppercase">
-                                Empresa</th>
-                            <th
                                 class="px-sm py-md font-label-md text-label-md text-surface-container-lowest uppercase">
                                 Curso</th>
                             <th
@@ -108,9 +105,6 @@
                                 </td>
                                 <td class="uppercase px-sm py-md font-body-sm text-body-sm text-on-surface-variant">
                                     {{ $certificado['ciudad'] }}
-                                </td>
-                                <td class="px-sm py-md font-body-sm text-body-sm text-on-surface-variant">
-                                    {{ $certificado['empresa'] }}
                                 </td>
                                 <td class="px-sm py-md">
                                     <span
